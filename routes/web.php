@@ -3,6 +3,8 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\StudentController;
+use App\Http\Controllers\TutorController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -25,3 +27,4 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 //Resources
 Route::resource('users', UserController::class)->middleware('auth');
 Route::resource('students', StudentController::class)->middleware('auth');
+Route::resource('tutors', TutorController::class)->middleware('auth');

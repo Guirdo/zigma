@@ -12,7 +12,7 @@
         </div>
     @endif
 
-    <form action="{{ route('students.store') }}" method="post">
+    <form action="{{ route('tutors.store') }}" method="post">
     @csrf
 
         <div class="row ml-0 mr-0">
@@ -28,8 +28,8 @@
 
         <div class="row mt-3 ml-0 mr-0">
             <div class="col">
-                <label for="">Birthday</label>
-                <input class="form-control" type="date" name="birthday" value="{{ old('birthday') }}">
+                <label for="">Email</label>
+                <input class="form-control" type="email" name="email" value="{{ old('email') }}">
             </div>
             <div class="col">
                 <label for="">Gender</label>
@@ -39,11 +39,6 @@
                     <option value="3" @if(old('gender') == 3) selected @endif>NON-BINARY</option>
                 </select>
             </div>
-        </div>
-
-        <div class="col-6 mt-3">
-            <label for="">Email</label>
-            <input class="form-control" type="email" name="email" value="{{ old('email') }}">
         </div>
 
         <div class="col mt-3">
@@ -62,8 +57,8 @@
         </div>
 
         <div class="row justify-content-around mt-4">
-            <a class="btn btn-info btn-lg col-md-4 m-0" href="{{ route('users.index') }}" type="submit">Back</a>
-            <button class="btn btn-success btn-lg col-md-4 m-0" type="submit">Add student</button>
+            <a class="btn btn-info btn-lg col-md-4 m-0" href="{{ route('tutors.index') }}" type="submit">Back</a>
+            <button class="btn btn-success btn-lg col-md-4 m-0" type="submit">Add tutor</button>
         </div>
     
     </form>

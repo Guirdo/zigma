@@ -19,10 +19,10 @@ $('#btnConfirm').on('click',function(event){
             }
         });
 
-        var student_id = $('#student_id').val();
+        var tutor_id = $('#tutor_id').val();
         
         $.ajax({
-             url: window.location.origin+'/students/'+student_id,
+             url: window.location.origin+'/tutors/'+tutor_id,
              type: 'DELETE',
              data: {},
              dataType: 'json',

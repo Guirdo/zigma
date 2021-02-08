@@ -97,6 +97,12 @@
                                 <a href="{{ route('students.index') }}" class="nav-link">Student Managment</a>
                             </li>
                         </ul>
+
+                        <ul class="nav flex-column">
+                            <li class="nav-item">
+                                <a href="{{ route('tutors.index') }}" class="nav-link">Tutor Managment</a>
+                            </li>
+                        </ul>
                     </div>
                     @else
                     <div class="sidebar-sticky pt-3">

@@ -3,7 +3,7 @@
 @section('content')
 
 <div class="row justify-content-center mb-4">
-    <a class="btn btn-success btn-lg" href="{{ route('students.create') }}">Add student</a>
+    <a class="btn btn-success btn-lg" href="{{ route('tutors.create') }}">Add tutor</a>
 </div>
 
 <div class="row mb-3">
@@ -25,18 +25,18 @@
         </thead>
 
         <tbody>
-            @foreach($students as $student)
+            @foreach($tutors as $tutor)
                 <tr>
-                    <td>{{ $student->name.' '.$student->lastname }}</td>
-                    <td>{{ $student->email }}</td>
-                    <td><a href="{{ route('students.show',$student->id) }}">Show</a></td>
+                    <td>{{ $tutor->name.' '.$tutor->lastname }}</td>
+                    <td>{{ $tutor->email }}</td>
+                    <td><a href="{{ route('tutors.show',$tutor->id) }}">Show</a></td>
                 </tr>
             @endforeach
         </tbody>
     </table>
 
     <div class="row justify-content-center">
-        {!! $students->links() !!}
+        {!! $tutors->links() !!}
     </div>
 
 </div>

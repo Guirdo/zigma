@@ -17,7 +17,7 @@ class StudentController extends Controller
     public function index()
     {
         $title = "Student managment";
-        $students = Student::all();
+        $students = Student::simplePaginate(15);
 
         return view('students.index',compact('title','students'));
     }
@@ -90,9 +90,19 @@ class StudentController extends Controller
      * @param  \App\Models\Student  $student
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Student $student)
+    public function update(StudentUpdateRequest $request, Student $student)
     {
-        //
+        $student->name = $request->name;
+        $student->lastname = $request->lastname;
+        $student->birthday = $request->birthday;
+        $student->gender = $request->gender;
+        $student->email = $request->email;
+        $student->address = $request->address;
+        $student->phonenumber = $request->phonenumber;
+
+        $student->save();
+
+        return redirect()->route('students.show',$student->id);
     }
 
     /**
@@ -103,6 +113,8 @@ class StudentController extends Controller
      */
     public function destroy(Student $student)
     {
-        //
+        $student->delete();
+
+        return response()->json(['redirect'=>'/students']);
     }
 }

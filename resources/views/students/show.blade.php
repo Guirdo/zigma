@@ -18,14 +18,21 @@
     </div>
 </div>
 
-<div class="col">
-    <h3>Email</h3>
-    <p>{{ $student->email }}</p>
+<div class="row ml-0">
+    <div class="col">
+        <h3>Email</h3>
+        <p>{{ $student->email }}</p>
+    </div>
+
+    <div class="col">
+        <h3>Phone number</h3>
+        <p>{{ $student->phonenumber }}</p>
+    </div>
 </div>
 
 <div class="col">
-    <h3>Phone number</h3>
-    <p>{{ $student->phonenumber }}</p>
+    <h3>Address</h3>
+    <p>{{ $student->address }}</p>
 </div>
 
 <div class="row justify-content-around mt-4">
@@ -44,7 +51,7 @@
 </div>
 
     @section('scripts')
-    <script src="{{ asset('js/users/delete.js') }}"></script>
+    <script src="{{ asset('js/students/delete.js') }}"></script>
     @endsection
 
 @endsection
