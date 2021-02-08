@@ -1,0 +1,19 @@
+body{
+    background-color: #FFCF99;
+}
+
+.bg-dark{
+    background-color: #31081F !important;
+}
+
+.btn-primary{
+    background: #874000;
+}
+
+.card-body{
+    background-color: #FFF8F0;
+}
+
+.navbar-dark{
+    background-color: #31081F !important;
+}
