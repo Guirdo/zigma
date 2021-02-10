@@ -60,7 +60,7 @@
 
         <div class="row justify-content-around mt-3">
             <button class="btn btn-warning btn-lg col-md-4 m-0" type="submit">Edit tutor</button>
-            <a class="btn btn-info btn-lg col-md-4 m-0" href="{{ route('tutors.show',$tutor->id) }}" type="submit">Back</a>
+            <a class="btn btn-info btn-lg col-md-4 m-0" href="{{ route('tutors.show',$tutor->id) }}">Back</a>
         </div>
     
     </form>

@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Student;
+use App\Models\Tutor;
+use App\Models\StudentTutor;
 use Illuminate\Http\Request;
 use App\Http\Requests\StudentStoreRequest;
 use App\Http\Requests\StudentUpdateRequest;
@@ -54,6 +56,15 @@ class StudentController extends Controller
 
         $student->save();
 
+        if($request->tutor_id != null){
+            $st = new StudentTutor();
+
+            $st->student_id = $student->id;
+            $st->tutor_id = $request->tutor_id;
+
+            $st->save();
+        }
+
         return redirect()->route('students.show',$student->id);
     }
 
@@ -66,8 +77,14 @@ class StudentController extends Controller
     public function show(Student $student)
     {
         $title = "Student #".$student->id;
+        $tutor = null;
+        $st = StudentTutor::where('student_id',$student->id)->first();
 
-        return view('students.show',compact('title','student'));
+        if($st != null){
+            $tutor = Tutor::find($st->tutor_id);
+        }
+
+        return view('students.show',compact('title','student','tutor'));
     }
 
     /**

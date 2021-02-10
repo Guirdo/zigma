@@ -1,5 +1,9 @@
 @extends('layouts.app')
 
+@section('styles')
+<link rel="stylesheet" href="{{ asset('css/scroll_table.css') }}">
+@endsection
+
 @section('content')
 
     @if($errors->any())
@@ -61,11 +65,39 @@
             <input class="form-control-file" type="file" name="photo">
         </div>
 
+        <div class="col mr-3 mt-3">
+            <div class="row ml-0 mr-0 justify-content-between">
+                <label for="">Search tutor</label>
+                <div class="col-5">
+                    <input class="form-control" type="text" id="inpSearch">
+                </div>
+                <button class="btn btn-primary" id="btnSearch">Search</button>
+                <button class="btn btn-warning">Add new tutor</button>
+            </div>
+
+            <div class="my-custom-scrollbar table-wrapper-scroll-y">
+                <table class="table table-sm table-bordered mt-3">
+                    <thead class="table-dark">
+                        <tr>
+                            <th>Select</th>
+                            <th>ID</th>
+                            <th>Name</th>
+                        </tr>
+                    </thead>
+                    <tbody id="tbody"></tbody>
+                </table>
+            </div>
+        </div>
+
         <div class="row justify-content-around mt-4">
             <a class="btn btn-info btn-lg col-md-4 m-0" href="{{ route('users.index') }}" type="submit">Back</a>
             <button class="btn btn-success btn-lg col-md-4 m-0" type="submit">Add student</button>
         </div>
     
     </form>
+
+@section('scripts')
+<script src="{{ asset('js/tutors/search.js') }}"></script>
+@endsection
 
 @endsection

@@ -8,6 +8,7 @@ use App\Http\Requests\UserUpdateRequest;
 use Illuminate\Support\Facades\Hash;
 use App\Models\User;
 use App\Models\UserType;
+use App\Models\Employee;
 
 class UserController extends Controller
 {
@@ -50,6 +51,7 @@ class UserController extends Controller
         $user->name = $request->name;
         $user->email = $request->email;
         $user->password = Hash::make($request->password);
+        $user->employee_id = $request->employee_id;
         $user->usertype_id = $request->usertype;
 
         $user->save();
@@ -68,8 +70,9 @@ class UserController extends Controller
         $title = "User #".$id;
         $user = User::find($id);
         $usertype = UserType::find($user->usertype_id);
+        $employee = Employee::find($user->employee_id);
         
-        return view('users.show',compact('title','user','usertype'));
+        return view('users.show',compact('title','user','usertype','employee'));
     }
 
     /**

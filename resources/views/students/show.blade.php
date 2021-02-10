@@ -35,6 +35,13 @@
     <p>{{ $student->address }}</p>
 </div>
 
+@if($tutor != null)
+<div class="col">
+    <h3>Tutor</h3>
+    <p><a href="{{ route('tutors.show',$tutor->id) }}">{{ $tutor->name.' '.$tutor->lastname }}</a></p>
+</div>
+@endif
+
 <div class="row justify-content-around mt-4">
     <a class="btn btn-info col-md-3 ml-0 mr-0" href="{{ route('students.index') }}">Back</a>
     <a class="btn btn-warning col-md-3 ml-0 mr-0" href="{{ route('students.edit',$student->id) }}">Edit</a>
@@ -46,12 +53,13 @@
     <div class="row justify-content-around mt-3">
         <button class="btn btn-success col-md-4 m-0" id="btnCancel">Cancel</button>
         <button class="btn btn-danger col-md-4 m-0" id="btnConfirm">Confirm</button>
-        <input type="hidden" value="{{ $student->id }}" id="student_id">
+        <input type="hidden" value="{{ $student->id }}" id="item_id">
+        <input type="hidden" value="students" id="item_type">
     </div>
 </div>
 
     @section('scripts')
-    <script src="{{ asset('js/students/delete.js') }}"></script>
+    <script src="{{ asset('js/main/delete.js') }}"></script>
     @endsection
 
 @endsection

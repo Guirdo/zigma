@@ -21,7 +21,7 @@ class UserSeeder extends Seeder
             'email' => 'admin@gmail.com',
             'password' => Hash::make('password'),
             'usertype_id' => 1,
-            //'idEmpleado' => 1,
+            'employee_id' => 1,
         ]);
     }
 }

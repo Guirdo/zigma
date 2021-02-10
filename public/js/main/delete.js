@@ -19,10 +19,13 @@ $('#btnConfirm').on('click',function(event){
             }
         });
 
-        var user_id = $('#user_id').val();
+        var item_id = $('#item_id').val();
+        var type = $('#item_type').val();
+
+        console.log(item_id,type);
         
         $.ajax({
-             url: window.location.origin+'/users/'+user_id,
+             url: window.location.origin+'/'+type+'/'+item_id,
              type: 'DELETE',
              data: {},
              dataType: 'json',
@@ -30,8 +33,8 @@ $('#btnConfirm').on('click',function(event){
                 window.location.replace(window.location.origin+response.redirect);
              },
              error: function(response){
-                 console.log(response);
-                alert('Something wrong happens');
+                console.log(response);
+                alert('Something wrong happens!!');
              }
          });
   });

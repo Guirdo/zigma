@@ -30,6 +30,7 @@ class StudentStoreRequest extends FormRequest
             'email'=>'required|email',
             'address'=>'required',
             'phonenumber'=>'required|digits:10',
+            'tutors_id'=>'nullable',
         ];
     }
 }

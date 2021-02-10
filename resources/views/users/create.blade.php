@@ -1,5 +1,9 @@
 @extends('layouts.app')
 
+@section('styles')
+<link rel="stylesheet" href="{{ asset('css/scroll_table.css') }}">
+@endsection
+
 @section('content')
 
     @if($errors->any())
@@ -36,6 +40,29 @@
             </div>
         </div>
 
+        <div class="row mt-4 ml-3 mr-3 px-0 justify-content-between">
+            <label for="">Search employee</label>
+            <div class="col-5">
+                <input class="form-control" type="text" id="inpSearch">
+            </div>
+            <button class="btn btn-primary" id="btnSearch">Search</button>
+            <button class="btn btn-warning">Add new employee</button>
+        </div>
+
+        <div class="my-custom-scrollbar table-wrapper-scroll-y ml-3 mr-3">
+            <table class="table table-sm table-bordered mt-3">
+                <thead class="table-dark">
+                    <tr>
+                        <th>Select</th>
+                        <th>ID</th>
+                        <th>Name</th>
+                        <th>Employee type</th>
+                    </tr>
+                </thead>
+                <tbody id="tbody"></tbody>
+            </table>
+        </div>
+
         <div class="col-6 mt-3">
             <label for="">User type</label>
             <select class="form-control" name="usertype" id="">
@@ -51,5 +78,9 @@
         </div>
     
     </form>
+
+@section('scripts')
+    <script src="{{ asset('js/employees/search.js') }}"></script>
+@endsection
 
 @endsection

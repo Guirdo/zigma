@@ -64,8 +64,8 @@
         </div>
 
         <div class="row justify-content-around mt-3">
-            <button class="btn btn-warning btn-lg col-md-4 m-0" type="submit">Edit user</button>
-            <a class="btn btn-info btn-lg col-md-4 m-0" href="{{ route('students.show',$student->id) }}" type="submit">Back</a>
+            <button class="btn btn-warning btn-lg col-md-4 m-0" type="submit">Edit student</button>
+            <a class="btn btn-info btn-lg col-md-4 m-0" href="{{ route('students.show',$student->id) }}" >Back</a>
         </div>
     
     </form>

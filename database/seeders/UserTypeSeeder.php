@@ -21,5 +21,9 @@ class UserTypeSeeder extends Seeder
         DB::table('user_types')->insert([
             'usertype' => 'EMPLOYEE',
         ]);
+
+        DB::table('user_types')->insert([
+            'usertype' => 'TEACHER',
+        ]);
     }
 }

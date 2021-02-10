@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Tutor;
+use App\Models\Student;
+use App\Models\StudentTutor;
 use Illuminate\Http\Request;
 use App\Http\Requests\TutorStoreRequest;
 use App\Http\Requests\TutorUpdateRequest;
@@ -65,8 +67,14 @@ class TutorController extends Controller
     public function show(Tutor $tutor)
     {
         $title = "Tutor #".$tutor->id;
+        $student = null;
+        $st = StudentTutor::where('tutor_id',$tutor->id)->first();
 
-        return view('tutors.show',compact('title','tutor'));
+        if($st != null){
+            $student = Student::find($st->student_id);
+        }
+
+        return view('tutors.show',compact('title','tutor','student'));
     }
 
     /**
@@ -114,5 +122,12 @@ class TutorController extends Controller
         $tutor->delete();
         
         return response()->json(['redirect'=>'/tutors']);
+    }
+
+    public function search(Request $request){
+        $lastname = $request->lastname;
+        $tutors = Tutor::where('lastname','like',$lastname.'%')->get();
+
+        return response()->json(['tutors'=>$tutors]);
     }
 }

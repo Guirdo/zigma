@@ -103,6 +103,18 @@
                                 <a href="{{ route('tutors.index') }}" class="nav-link">Tutor Managment</a>
                             </li>
                         </ul>
+
+                        <ul class="nav flex-column">
+                            <li class="nav-item">
+                                <a href="{{ route('employees.index') }}" class="nav-link">Employee Managment</a>
+                            </li>
+                        </ul>
+
+                        <ul class="nav flex-column">
+                            <li class="nav-item">
+                                <a href="{{ route('courses.index') }}" class="nav-link">Course Managment</a>
+                            </li>
+                        </ul>
                     </div>
                     @else
                     <div class="sidebar-sticky pt-3">
@@ -118,10 +130,10 @@
                     
                 </nav>
 
-                <main class="col-md-9 ml-sm-auto col-lg-10 px-md-2 py-md-4">
+                <main class="col-md-8 ml-sm-auto col-lg-10 px-md-4 py-md-4">
                     <div class="container">
                         <div class="row justify-content-center">
-                            <div class="col-md-9">
+                            <div class="col-md-11">
                                 <div class="card bg-light">
 
                                     <div class="mt-3 ml-3">
