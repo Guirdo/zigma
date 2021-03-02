@@ -4,11 +4,10 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\SoftDeletes;
 
-class Student extends Model
+class Concept extends Model
 {
-    use HasFactory,SoftDeletes;
+    use HasFactory;
 
     /**
      * The attributes that are mass assignable.
@@ -16,14 +15,8 @@ class Student extends Model
      * @var array
      */
     protected $fillable = [
-        'enrollment',
-        'name',
-        'lastname',
-        'birthday',
-        'gender',
-        'email',
-        'address',
-        'phonenumber',
+        'concept',
+        'cost',
     ];
 
     /**
@@ -32,10 +25,7 @@ class Student extends Model
      * @var array
      */
     protected $hidden = [
-        
+        'id',
     ];
 
-    public function getFullName(){
-        return "{$this->name} {$this->lastname}";
-    }
 }

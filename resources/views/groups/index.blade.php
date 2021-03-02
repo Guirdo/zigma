@@ -3,7 +3,7 @@
 @section('content')
 
 <div class="row justify-content-center mb-4">
-    <a class="btn btn-success btn-lg" href="{{ route('courses.create') }}">Add course</a>
+    <a class="btn btn-success btn-lg" href="{{ route('groups.create') }}">Add groups</a>
 </div>
 
 <div class="row mb-3">
@@ -19,28 +19,28 @@
         <thead>
             <tr class="table-warning">
                 <th>ID</th>
-                <th>Name</th>
-                <th>Weekly cost($)</th>
-                <th>Monthly cost($)</th>
+                <th>Course</th>
+                <th>Schedule</th>
                 <th>---</th>
             </tr>
         </thead>
 
         <tbody>
-            @foreach($courses as $course)
+            @php( $i = 0)
+            @foreach($groups as $group)
                 <tr>
-                    <td>{{ $course->id }}</td>
-                    <td>{{ $course->course }}</td>
-                    <td>{{ $course->weeklycost }}</td>
-                    <td>{{ $course->monthlycost }}</td>
-                    <td><a href="{{ route('courses.show',$course->id) }}">Show</a></td>
+                    <td>{{ $group->id }}</td>
+                    <td>{{ $courses[$group->course_id - 1]->course }}</td>
+                    <td>{{ $group->getSchedule() }}</td>
+                    <td><a href="{{ route('groups.show',$group->id) }}">Show</a></td>
                 </tr>
+                @php($i = $i+1)
             @endforeach
         </tbody>
     </table>
 
     <div class="row justify-content-center">
-        {!! $courses->links() !!}
+        {!! $groups->links() !!}
     </div>
 
 </div>

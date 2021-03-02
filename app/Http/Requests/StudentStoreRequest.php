@@ -31,6 +31,7 @@ class StudentStoreRequest extends FormRequest
             'address'=>'required',
             'phonenumber'=>'required|digits:10',
             'tutors_id'=>'nullable',
+            'group_id'=>'required',
         ];
     }
 }

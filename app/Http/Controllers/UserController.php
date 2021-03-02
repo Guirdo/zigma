@@ -52,7 +52,7 @@ class UserController extends Controller
         $user->email = $request->email;
         $user->password = Hash::make($request->password);
         $user->employee_id = $request->employee_id;
-        $user->usertype_id = $request->usertype;
+        $user->user_type_id = $request->usertype;
 
         $user->save();
 
@@ -69,7 +69,7 @@ class UserController extends Controller
     {
         $title = "User #".$id;
         $user = User::find($id);
-        $usertype = UserType::find($user->usertype_id);
+        $usertype = UserType::find($user->user_type_id);
         $employee = Employee::find($user->employee_id);
         
         return view('users.show',compact('title','user','usertype','employee'));
@@ -106,7 +106,7 @@ class UserController extends Controller
         if($request->password != null){
             $user->password = Hash::make($request->password); 
         }
-        $user->usertype_id = $request->usertype;
+        $user->user_type_id = $request->usertype;
 
         $user->save();
 

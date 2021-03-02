@@ -16,12 +16,14 @@ class CourseSeeder extends Seeder
     {
         DB::table('courses')->insert([
             'course'=>'ENGLISH A1',
-            'cost'=>'150.00',
+            'weeklycost'=>'150.00',
+            'monthlycost'=>'700.00',
         ]);
 
         DB::table('courses')->insert([
             'course'=>'ENGLISH B1',
-            'cost'=>'150.00',
+            'weeklycost'=>'150.00',
+            'monthlycost'=>'700.00',
         ]);
     }
 }

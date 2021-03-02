@@ -19,16 +19,12 @@ class CreateUsersTable extends Migration
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
-            $table->unsignedBigInteger('employee_id');
-            $table->unsignedBigInteger('usertype_id');
+            $table->foreignId('employee_id')->constrained()->onDelete('cascade');
+            $table->foreignId('user_type_id')->constrained()->onDelete('cascade');
             $table->rememberToken();
             $table->timestamps();
             $table->softDeletes();
         });
-        /*
-        Schema::table('users', function($table) {
-            $table->foreign('usertype_id')->references('id')->on('user_types')->cascade();
-        });*/
     }
 
     /**
@@ -38,12 +34,10 @@ class CreateUsersTable extends Migration
      */
     public function down()
     {
-        /*
-        Schema::table('users', function (Blueprint $table) {
-            $table->dropForeign('users_idtipousuario_foreign');
-        });*/
 
         Schema::table('users', function (Blueprint $table) {
+            $table->dropForeign('users_employee_id_foreign');
+            $table->dropForeign('users_user_type_id_foreign');
             $table->dropSoftDeletes();
         });
         

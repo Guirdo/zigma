@@ -72,7 +72,7 @@
                     <input class="form-control" type="text" id="inpSearch">
                 </div>
                 <button class="btn btn-primary" id="btnSearch">Search</button>
-                <button class="btn btn-warning">Add new tutor</button>
+                <a class="btn btn-warning" href="{{ route('tutors.create') }}">Add new tutor</a>
             </div>
 
             <div class="my-custom-scrollbar table-wrapper-scroll-y">
@@ -85,6 +85,30 @@
                         </tr>
                     </thead>
                     <tbody id="tbody"></tbody>
+                </table>
+            </div>
+        </div>
+
+        <div class="col">
+            <label for="">Select group</label>
+            <div class="my-custom-scrollbar table-wrapper-scroll-y">
+                <table class="table table-sm">
+                    <thead class="table-dark">
+                        <tr>
+                            <td>Select</td>
+                            <td>Course</td>
+                            <td>Schedule</td>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach($groups as $group)
+                        <tr>
+                            <td><input type="radio" name="group_id" value="{{ $group->id }}"></td>
+                            <td>{{ $courses[$group->course_id - 1]->course }}</td>
+                            <td>{{ $group->getSchedule() }}</td>
+                        </tr>
+                        @endforeach
+                    </tbody>
                 </table>
             </div>
         </div>

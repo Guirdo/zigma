@@ -3,6 +3,11 @@
 @section('content')
 
 <div class="col">
+    <h3>Enrollment</h3>
+    <p>{{ $student->enrollment }}</p>
+</div>
+
+<div class="col">
     <h3>Full name</h3>
     <p>{{ $student->name.' '.$student->lastname }}</p>
 </div>
@@ -33,6 +38,11 @@
 <div class="col">
     <h3>Address</h3>
     <p>{{ $student->address }}</p>
+</div>
+
+<div class="col">
+    <h3>Group</h3>
+    <p><a href="{{ route('groups.show',$group->id) }}">{{ $course->course }} - {{ $group->getSchedule() }}</a></p>
 </div>
 
 @if($tutor != null)

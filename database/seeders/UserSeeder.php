@@ -20,7 +20,7 @@ class UserSeeder extends Seeder
             'name' => 'Admin',
             'email' => 'admin@gmail.com',
             'password' => Hash::make('password'),
-            'usertype_id' => 1,
+            'user_type_id' => 1,
             'employee_id' => 1,
         ]);
     }

@@ -16,14 +16,20 @@
     @csrf
     {{ method_field('PUT') }}
 
+        <div class="col-6">
+            <label for="">Name</label>
+            <input class="form-control" name="name" type="text" value="{{ $course->course }}">
+        </div>
+
         <div class="row ml-0 mr-0">
-            <div class="col-6">
-                <label for="">Name</label>
-                <input class="form-control" name="name" type="text" value="{{ $course->course }}">
+            <div class="col">
+                <label for="">Weekly cost</label>
+                <input class="form-control" type="number" name="weeklycost" value="{{ $course->weeklycost }}">
             </div>
-            <div class="col-6">
-                <label for="">Cost</label>
-                <input class="form-control" type="number" name="cost" value="{{ $course->cost }}">
+
+            <div class="col">
+                <label for="">Monthly cost</label>
+                <input class="form-control" type="number" name="monthlycost" value="{{ $course->monthlycost }}">
             </div>
         </div>
 

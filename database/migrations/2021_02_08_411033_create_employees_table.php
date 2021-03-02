@@ -21,7 +21,7 @@ class CreateEmployeesTable extends Migration
             $table->string('email',255);
             $table->text('address');
             $table->string('phonenumber',10);
-            $table->unsignedBigInteger('employeetype_id');
+            $table->foreignId('employee_type_id')->constrained()->onDelete('cascade');
             $table->text('url_photo')->nullable();
             $table->timestamps();
             $table->softDeletes();
@@ -36,6 +36,7 @@ class CreateEmployeesTable extends Migration
     public function down()
     {
         Schema::table('employees', function (Blueprint $table) {
+            $table->dropForeign('employees_employee_type_id_foreign');
             $table->dropSoftDeletes();
         });
 

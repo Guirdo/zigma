@@ -25,7 +25,8 @@ class CourseUpdateRequest extends FormRequest
     {
         return [
             'name'=>'required',
-            'cost'=>'required',
+            'weeklycost'=>'required',
+            'monthlycost'=>'required',
         ];
     }
 }

@@ -2,15 +2,20 @@
 
 @section('content')
 
+<div class="col">
+    <h3>Name</h3>
+    <p>{{ $course->course }}</p>
+</div>
+
 <div class="row ml-0 mr-0">
     <div class="col">
-        <h3>Name</h3>
-        <p>{{ $course->course }}</p>
+        <h3>Monthly cost</h3>
+        <p>${{ $course->monthlycost }}</p>
     </div>
 
     <div class="col">
-        <h3>Cost</h3>
-        <p>${{ $course->cost }}</p>
+        <h3>Weekly cost</h3>
+        <p>${{ $course->weeklycost }}</p>
     </div>
 </div>
 

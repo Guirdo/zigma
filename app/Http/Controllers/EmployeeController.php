@@ -52,7 +52,7 @@ class EmployeeController extends Controller
         $employee->email = $request->email;
         $employee->address = $request->address;
         $employee->phonenumber = $request->phonenumber;
-        $employee->employeetype_id = $request->employeetype;
+        $employee->employee_type_id = $request->employeetype;
 
         $employee->save();
 
@@ -68,7 +68,7 @@ class EmployeeController extends Controller
     public function show(Employee $employee)
     {
         $title = "Employee #".$employee->id;
-        $employeetype = EmployeeType::find($employee->employeetype_id);
+        $employeetype = EmployeeType::find($employee->employee_type_id);
 
         return view('employees.show',compact('title','employee','employeetype'));
     }
@@ -102,7 +102,7 @@ class EmployeeController extends Controller
         $employee->email = $request->email;
         $employee->address = $request->address;
         $employee->phonenumber = $request->phonenumber;
-        $employee->employeetype_id = $request->employeetype;
+        $employee->employee_type_id = $request->employeetype;
 
         $employee->save();
 
@@ -128,10 +128,19 @@ class EmployeeController extends Controller
         $employeetypes = [];
 
         foreach($employees as $emp){
-            $et = EmployeeType::find($emp->id);
+            $et = EmployeeType::find($emp->employee_type_id);
             array_push($employeetypes,$et);
         }
 
         return response()->json(['employees'=>$employees,'employeetypes'=>$employeetypes]);
+    }
+
+    public function searchTeacher(Request $request){
+        $lastname = $request->input;
+        $teachers = Employee::where('lastname','like',$lastname.'%')
+                        ->where('employee_type_id',3)
+                        ->orWhere('id',1)->get();
+
+        return response()->json(['teachers'=>$teachers]);
     }
 }

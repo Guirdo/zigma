@@ -15,7 +15,7 @@ class EmployeeTypeSeeder extends Seeder
     public function run()
     {
         DB::table('employee_types')->insert([
-            'employeetype' => 'DIRECTOR',
+            'employeetype' => 'PRINCIPAL',
         ]);
 
         DB::table('employee_types')->insert([

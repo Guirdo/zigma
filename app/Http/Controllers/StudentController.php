@@ -5,6 +5,9 @@ namespace App\Http\Controllers;
 use App\Models\Student;
 use App\Models\Tutor;
 use App\Models\StudentTutor;
+use App\Models\Group;
+use App\Models\Course;
+use App\Models\StudentGroup;
 use Illuminate\Http\Request;
 use App\Http\Requests\StudentStoreRequest;
 use App\Http\Requests\StudentUpdateRequest;
@@ -32,8 +35,10 @@ class StudentController extends Controller
     public function create()
     {
         $title = "Add student";
+        $groups = Group::all();
+        $courses = Course::all();
 
-        return view('students.create',compact('title'));
+        return view('students.create',compact('title','groups','courses'));
     }
 
     /**
@@ -46,6 +51,7 @@ class StudentController extends Controller
     {
         $student = new Student();
 
+        $student->enrollment = self::setEnrollment();
         $student->name = $request->name;
         $student->lastname = $request->lastname;
         $student->birthday = $request->birthday;
@@ -56,12 +62,15 @@ class StudentController extends Controller
 
         $student->save();
 
+        $sg = new StudentGroup();
+        $sg->student_id = $student->id;
+        $sg->group_id = $request->group_id;
+        $sg->save();
+
         if($request->tutor_id != null){
             $st = new StudentTutor();
-
             $st->student_id = $student->id;
             $st->tutor_id = $request->tutor_id;
-
             $st->save();
         }
 
@@ -77,14 +86,17 @@ class StudentController extends Controller
     public function show(Student $student)
     {
         $title = "Student #".$student->id;
+        $sg = StudentGroup::where('student_id',$student->id)->first();
+        $group = Group::find($sg->group_id);
+        $course = Course::find($group->course_id);
+
         $tutor = null;
         $st = StudentTutor::where('student_id',$student->id)->first();
-
         if($st != null){
             $tutor = Tutor::find($st->tutor_id);
         }
 
-        return view('students.show',compact('title','student','tutor'));
+        return view('students.show',compact('title','student','tutor','group','course'));
     }
 
     /**
@@ -133,5 +145,18 @@ class StudentController extends Controller
         $student->delete();
 
         return response()->json(['redirect'=>'/students']);
+    }
+
+    public function setEnrollment(){
+        $count = Student::whereYear('created_at',date('Y'))->count();
+        $count = $count + 1;
+
+        if(($count / 100) >= 1){
+            return date('y').$count;
+        }else if(($count / 10) >= 1){
+            return date('y').'0'.$count;
+        }else{
+            return date('y').'00'.$count;
+        }
     }
 }

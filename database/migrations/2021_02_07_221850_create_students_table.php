@@ -15,6 +15,7 @@ class CreateStudentsTable extends Migration
     {
         Schema::create('students', function (Blueprint $table) {
             $table->id();
+            $table->string('enrollment',5)->nullable();
             $table->string('name',50);
             $table->string('lastname',50);
             $table->date('birthday');
@@ -22,6 +23,7 @@ class CreateStudentsTable extends Migration
             $table->string('email',255);
             $table->text('address');
             $table->string('phonenumber',10);
+            $table->enum('payment_type',['weekly','monthly'])->default('weekly');
             $table->text('url_photo')->nullable();
             $table->timestamps();
             $table->softDeletes();

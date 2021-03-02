@@ -78,7 +78,7 @@
         <div class="container-fluid">
             <div class="row">
                 <nav id="sideBar" class="col-md-3 col-lg-2 d-md-block bg-light navbar-collapse collapse">
-                    @if(Auth::user()->usertype_id == 1)
+                    @if(Auth::user()->user_type_id == 1)
                     <div class="sidebar-sticky pt-3">
                         <ul class="nav flex-column">
                             <li class="nav-item">
@@ -113,6 +113,18 @@
                         <ul class="nav flex-column">
                             <li class="nav-item">
                                 <a href="{{ route('courses.index') }}" class="nav-link">Course Managment</a>
+                            </li>
+                        </ul>
+
+                        <ul class="nav flex-column">
+                            <li class="nav-item">
+                                <a href="{{ route('groups.index') }}" class="nav-link">Group Managment</a>
+                            </li>
+                        </ul>
+
+                        <ul class="nav flex-column">
+                            <li class="nav-item">
+                                <a href="{{ route('payments.index') }}" class="nav-link">Payment Managment</a>
                             </li>
                         </ul>
                     </div>

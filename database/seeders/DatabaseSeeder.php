@@ -17,11 +17,17 @@ class DatabaseSeeder extends Seeder
             //Catalogue
             UserTypeSeeder::class,
             EmployeeTypeSeeder::class,
+            ConceptSeeder::class,
 
             //Main
             CourseSeeder::class,
+            GroupSeeder::class,
+            StudentSeeder::class,
             EmployeeSeeder::class,
             UserSeeder::class,
+
+            //Relations
+            StudentGroupSeeder::class,
         ]);
     }
 }

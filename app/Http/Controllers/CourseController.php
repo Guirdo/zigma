@@ -45,7 +45,8 @@ class CourseController extends Controller
         $course = new Course();
 
         $course->course = $request->name;
-        $course->cost = $request->cost;
+        $course->weeklycost = $request->weeklycost;
+        $course->monthlycost = $request->monthlycost;
 
         $course->save();
 
@@ -88,7 +89,8 @@ class CourseController extends Controller
     public function update(CourseUpdateRequest $request, Course $course)
     {
         $course->course = $request->name;
-        $course->cost = $request->cost;
+        $course->weeklycost = $request->weeklycost;
+        $course->monthlycost = $request->monthlycost;
 
         $course->save();
 

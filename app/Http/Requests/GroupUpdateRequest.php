@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class CourseStoreRequest extends FormRequest
+class GroupUpdateRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,9 +24,11 @@ class CourseStoreRequest extends FormRequest
     public function rules()
     {
         return [
-            'name'=>'required',
-            'weeklycost'=>'required',
-            'monthlycost'=>'required',
+            'days'=>'in:MondayToFriday,Monday,Tuesday,Wednesday,Thursday,Friday,Saturday,Sunday',
+            'starthour'=>'required',
+            'finalhour'=>'required',
+            'firstdate'=>'required',
+            'teacher_id'=>'required',
         ];
     }
 }
