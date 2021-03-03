@@ -20,10 +20,10 @@ class DatabaseSeeder extends Seeder
             ConceptSeeder::class,
 
             //Main
+            EmployeeSeeder::class,
             CourseSeeder::class,
             GroupSeeder::class,
             StudentSeeder::class,
-            EmployeeSeeder::class,
             UserSeeder::class,
 
             //Relations

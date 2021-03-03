@@ -3,7 +3,7 @@
 namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
-use DB;
+use App\Models\Course;
 
 class CourseSeeder extends Seeder
 {
@@ -14,13 +14,13 @@ class CourseSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('courses')->insert([
+        Course::create([
             'course'=>'ENGLISH A1',
             'weeklycost'=>'150.00',
             'monthlycost'=>'700.00',
         ]);
 
-        DB::table('courses')->insert([
+        Course::create([
             'course'=>'ENGLISH B1',
             'weeklycost'=>'150.00',
             'monthlycost'=>'700.00',

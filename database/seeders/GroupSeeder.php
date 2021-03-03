@@ -3,7 +3,7 @@
 namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
-use DB;
+use App\Models\Group;
 
 class GroupSeeder extends Seeder
 {
@@ -14,7 +14,7 @@ class GroupSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('groups')->insert([
+        Group::create([
             'days'=>'Saturday',
             'starthour'=>'12:00:00',
             'finalhour'=>'17:00:00',

@@ -8,4 +8,12 @@ use Illuminate\Database\Eloquent\Model;
 class EmployeeType extends Model
 {
     use HasFactory;
+
+    protected $fillable = [
+        'employeetype',
+    ];
+
+    protected $hidden = [
+        'id',
+    ];
 }

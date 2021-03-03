@@ -3,7 +3,7 @@
 namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
-use DB;
+use App\Models\EmployeeType;
 
 class EmployeeTypeSeeder extends Seeder
 {
@@ -14,15 +14,15 @@ class EmployeeTypeSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('employee_types')->insert([
+        EmployeeType::create([
             'employeetype' => 'PRINCIPAL',
         ]);
 
-        DB::table('employee_types')->insert([
+        EmployeeType::create([
             'employeetype' => 'ADMINISTRATION',
         ]);
 
-        DB::table('employee_types')->insert([
+        EmployeeType::create([
             'employeetype' => 'TEACHER',
         ]);
     }

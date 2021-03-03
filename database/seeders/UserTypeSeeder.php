@@ -3,7 +3,7 @@
 namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
-use DB;
+use App\Models\UserType;
 
 class UserTypeSeeder extends Seeder
 {
@@ -14,15 +14,15 @@ class UserTypeSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('user_types')->insert([
+        UserType::create([
             'usertype' => 'ADMINISTRATOR',
         ]);
 
-        DB::table('user_types')->insert([
+        UserType::create([
             'usertype' => 'EMPLOYEE',
         ]);
 
-        DB::table('user_types')->insert([
+        UserType::create([
             'usertype' => 'TEACHER',
         ]);
     }

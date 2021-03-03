@@ -14,8 +14,8 @@ class CreateStudentTutorsTable extends Migration
     public function up()
     {
         Schema::create('student_tutors', function (Blueprint $table) {
-            $table->unsignedBigInteger('student_id');
-            $table->unsignedBigInteger('tutor_id');
+            $table->foreignId('student_id')->constrained();
+            $table->foreignId('tutor_id')->constrained();
             $table->timestamps();
         });
     }
@@ -27,6 +27,11 @@ class CreateStudentTutorsTable extends Migration
      */
     public function down()
     {
+        Schema::table('student_tutors', function (Blueprint $table) {
+            $table->dropForeign('student_tutors_student_id_foreign');
+            $table->dropForeign('student_tutors_tutor_id_foreign');
+        });
+
         Schema::dropIfExists('student_tutors');
     }
 }

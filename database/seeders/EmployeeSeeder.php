@@ -3,7 +3,7 @@
 namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
-use DB;
+use App\Models\Employee;
 
 class EmployeeSeeder extends Seeder
 {
@@ -14,7 +14,7 @@ class EmployeeSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('employees')->insert([
+        Employee::create([
             'name' => 'Eliseo',
             'lastname'=>'Nava',
             'gender'=>'2',
@@ -24,7 +24,7 @@ class EmployeeSeeder extends Seeder
             'employee_type_id' => 1,
         ]);
 
-        DB::table('employees')->insert([
+        Employee::create([
             'name' => 'Raquel',
             'lastname'=>'Bobadilla',
             'gender'=>'1',

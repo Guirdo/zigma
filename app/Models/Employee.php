@@ -9,4 +9,14 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 class Employee extends Model
 {
     use HasFactory,SoftDeletes;
+
+    protected $fillable = [
+        'name',
+        'lastname',
+        'gender',
+        'email',
+        'address', 
+        'phonenumber',
+        'employee_type_id',
+    ];
 }

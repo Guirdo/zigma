@@ -14,8 +14,8 @@ class CreateStudentGroupsTable extends Migration
     public function up()
     {
         Schema::create('student_groups', function (Blueprint $table) {
-            $table->unsignedBigInteger('student_id');
-            $table->unsignedBigInteger('group_id');
+            $table->foreignId('student_id')->constrained();
+            $table->foreignId('group_id')->constrained();
             $table->timestamps();
         });
     }
@@ -27,6 +27,11 @@ class CreateStudentGroupsTable extends Migration
      */
     public function down()
     {
+        Schema::table('student_groups', function (Blueprint $table) {
+            $table->dropForeign('student_groups_student_id_foreign');
+            $table->dropForeign('student_groups_group_id_foreign');
+        });
+
         Schema::dropIfExists('student_groups');
     }
 }

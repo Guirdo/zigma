@@ -3,7 +3,7 @@
 namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
-use DB;
+use App\Models\StudentGroup;
 
 class StudentGroupSeeder extends Seeder
 {
@@ -14,7 +14,7 @@ class StudentGroupSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('student_groups')->insert([
+        StudentGroup::create([
             'student_id'=>'1',
             'group_id'=>'1',
         ]);

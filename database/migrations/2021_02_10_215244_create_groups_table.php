@@ -19,8 +19,8 @@ class CreateGroupsTable extends Migration
             $table->time('starthour',$precision=0);
             $table->time('finalhour');
             $table->date('firstdate');
-            $table->unsignedBigInteger('teacher_id');
-            $table->unsignedBigInteger('course_id');
+            $table->foreignId('teacher_id')->references('id')->on('employees')->onDelete('cascade');
+            $table->foreignId('course_id')->constrained();
             $table->timestamps();
         });
     }
@@ -32,6 +32,11 @@ class CreateGroupsTable extends Migration
      */
     public function down()
     {
+        Schema::table('groups', function (Blueprint $table) {
+            $table->dropForeign('groups_teacher_id_foreign');
+            $table->dropForeign('groups_course_id_foreign');
+        });
+
         Schema::dropIfExists('groups');
     }
 }
