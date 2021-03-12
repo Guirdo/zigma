@@ -63,7 +63,7 @@ $(document).on('click', '#btnPrint', function (event) {
                 ],
             });
             
-            doc.save('test.pdf');
+            doc.save('R_'+payment.folionumber+'.pdf');
             
         },
         error: function (response) {
