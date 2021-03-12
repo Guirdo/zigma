@@ -15,11 +15,23 @@
     <form action="{{ route('payments.store') }}" method="post">
     @csrf
 
-        <div class="row justify-content-between ml-0 mr-0 ">
+        <div class="row justify-content-between ml-0 mr-0">
             <div class="col">
                 <h3>Student</h3>
                 <p>{{ $student->getFullName() }}</p>
                 <input type="hidden" name="student_id" value="{{ $student->id }}">
+            </div>
+
+            <div class="col">
+                <h3>Enrollment</h3>
+                <p>{{ $student->enrollment   }}</p>
+            </div>
+        </div>
+
+        <div class="row justify-content-between ml-0 mr-0">
+            <div class="col">
+                <h3>Course</h3>
+                <p>{{ $course->course }}</p>
             </div>
 
             <div class="col">
@@ -31,7 +43,7 @@
 
         <div class="col-6">
             <h3>Concept</h3>
-            <select class="form-control" name="concept" id="concept">
+            <select class="form-control" name="concept_id" id="concept">
                 @foreach($concepts as $concept)
                     <option value="{{ $concept->id }}">{{ $concept->concept }}</option>
                 @endforeach

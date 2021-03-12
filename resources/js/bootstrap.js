@@ -41,3 +41,4 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 // });
 
 window.jsPDF = require('jspdf');
+window.jsPDF_auto = require('jspdf-autotable');

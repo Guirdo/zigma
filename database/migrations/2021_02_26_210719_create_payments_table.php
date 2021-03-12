@@ -15,7 +15,7 @@ class CreatePaymentsTable extends Migration
     {
         Schema::create('payments', function (Blueprint $table) {
             $table->id();
-            $table->string('concept',140);
+            $table->string('folionumber',12)->nullable();
             $table->decimal('amount');
             $table->decimal('surcharge');
             $table->foreignId('concept_id')->constrained();

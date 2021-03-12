@@ -24,8 +24,8 @@ class PaymentStoreRequest extends FormRequest
     public function rules()
     {
         return [
-            'concept'=>'required|max:140',
-            'surcharge'=>'required'
+            'amount'=>'required|numeric|min:50',
+            'surcharge'=>'required|numeric'
         ];
     }
 }

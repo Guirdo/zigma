@@ -51,14 +51,15 @@ class PaymentController extends Controller
     }
 
     public function store(PaymentStoreRequest $request){
-        $payment = new Payment();
+        $payment = Payment::create([
+            'amount' => $request->amount,
+            'surcharge' => $request->surcharge,
+            'concept_id' => $request->concept_id,
+            'student_id' => $request->student_id,
+            'group_id' => $request->group_id,
+        ]);
 
-        $payment->concept = $request->concept;
-        $payment->amount = $request->amount;
-        $payment->surcharge = $request->surcharge;
-        $payment->student_id = $request->student_id;
-        $payment->group_id = $request->group_id;
-
+        $payment->folionumber = self::setFolioNumber();
         $payment->save();
 
         return redirect()->route('payments.show',$payment);
@@ -66,11 +67,43 @@ class PaymentController extends Controller
     
     public function show(Payment $payment)
     {
-        $title = "Receipt #".$payment->id;
+        $title = "Receipt #".$payment->folionumber;
         $student = Student::find($payment->student_id);
         $group = Group::find($payment->group_id);
+        $course = Course::find($group->course_id);
+        $concept = Concept::find($payment->concept_id);
 
-        return view('payments.show',compact('title','payment','student','group'));
+        return view('payments.show',compact('title','payment','student','group','course','concept'));
+    }
+
+    private function setFolioNumber(){
+        $count = Payment::whereYear('created_at',date('Y'))->count();
+
+        if(($count / 1000) >= 1){
+            return 'SA-'.$count.'-'.date('Y');
+        }else if(($count / 100) >= 1){
+            return 'SA-0'.$count.'-'.date('Y');
+        }else if(($count / 10) >= 1){
+            return 'SA-00'.$count.'-'.date('Y');
+        }else{
+            return 'SA-000'.$count.'-'.date('Y');
+        }
+    }
+
+    public function printPDF(Request $request){
+        $payment = Payment::find($request->payment_id);
+        $student = Student::find($payment->student_id);
+        $group = Group::find($payment->group_id);
+        $course = Course::find($group->course_id);
+        $concept = Concept::find($payment->concept_id);
+
+        return response()->json([
+            'payment'   =>  $payment,
+            'student'   =>  $student,
+            'group'     =>  $group,
+            'course'    =>  $course,
+            'concept'   =>  $concept,
+        ]);
     }
 
 }
