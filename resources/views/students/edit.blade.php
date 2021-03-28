@@ -58,12 +58,20 @@
             <input class="form-control" type="tel" name="phonenumber" value="{{ $student->phonenumber }}">
         </div>
 
+        <div class="col-6 mt-3 ml-0 mr-0">
+            <label for="">Payment type</label>
+            <select class="form-control" name="payment_type">
+                <option value="1" @if($student->payment_type == 'WEEKLY') selected @endif >WEEKLY</option>
+                <option value="2" @if($student->payment_type == 'MONTHLY') selected @endif >MONTHLY</option>
+            </select>
+        </div>
+
         <div class="col-6 mt-3 d-none">
             <label for="">Photo</label>
             <input class="form-control-file" type="file" name="photo">
         </div>
 
-        <div class="row justify-content-around mt-3">
+        <div class="row justify-content-around mt-5">
             <button class="btn btn-warning btn-lg col-md-4 m-0" type="submit">Edit student</button>
             <a class="btn btn-info btn-lg col-md-4 m-0" href="{{ route('students.show',$student->id) }}" >Back</a>
         </div>

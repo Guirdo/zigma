@@ -62,11 +62,13 @@ class PaymentController extends Controller
         $payment->folionumber = self::setFolioNumber();
         $payment->save();
 
-        return redirect()->route('payments.show',$payment);
+        return redirect()->route('payments.show',$payment->folionumber);
     }
     
-    public function show(Payment $payment)
-    {
+    public function show($folio)
+    {   
+        $payment = Payment::where('folionumber',$folio)->first();
+
         $title = "Receipt #".$payment->folionumber;
         $student = Student::find($payment->student_id);
         $group = Group::find($payment->group_id);

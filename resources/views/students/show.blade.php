@@ -41,6 +41,11 @@
 </div>
 
 <div class="col">
+    <h3>Payment type</h3>
+    <p>{{ $student->payment_type }}</p>
+</div>
+
+<div class="col">
     <h3>Group</h3>
     <p><a href="{{ route('groups.show',$group->id) }}">{{ $course->course }} - {{ $group->getSchedule() }}</a></p>
 </div>

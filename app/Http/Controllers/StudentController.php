@@ -49,29 +49,28 @@ class StudentController extends Controller
      */
     public function store(StudentStoreRequest $request)
     {
-        $student = new Student();
+        $student = Student::create([
+            'enrollment'    =>  self::setEnrollment(),
+            'name'          =>  $request->name,
+            'lastname'      =>  $request->lastname,
+            'birthday'      =>  $request->birthday,
+            'gender'        =>  $request->gender,
+            'email'         =>  $request->email,
+            'address'       =>  $request->address,
+            'phonenumber'   =>  $request->phonenumber,
+            'payment_type'  =>  $request->payment_type,
+        ]);
 
-        $student->enrollment = self::setEnrollment();
-        $student->name = $request->name;
-        $student->lastname = $request->lastname;
-        $student->birthday = $request->birthday;
-        $student->gender = $request->gender;
-        $student->email = $request->email;
-        $student->address = $request->address;
-        $student->phonenumber = $request->phonenumber;
-
-        $student->save();
-
-        $sg = new StudentGroup();
-        $sg->student_id = $student->id;
-        $sg->group_id = $request->group_id;
-        $sg->save();
+        $sg = StudentGroup::create([
+            'student_id'    =>  $student->id,
+            'group_id'      =>  $request->group_id,
+        ]);
 
         if($request->tutor_id != null){
-            $st = new StudentTutor();
-            $st->student_id = $student->id;
-            $st->tutor_id = $request->tutor_id;
-            $st->save();
+            StudentTutor::create([
+                'student_id'    =>  $student->id,
+                'tutor_id'      =>  $request->tutor_id,
+            ]);
         }
 
         return redirect()->route('students.show',$student->id);
@@ -121,14 +120,16 @@ class StudentController extends Controller
      */
     public function update(StudentUpdateRequest $request, Student $student)
     {
-        $student->name = $request->name;
-        $student->lastname = $request->lastname;
-        $student->birthday = $request->birthday;
-        $student->gender = $request->gender;
-        $student->email = $request->email;
-        $student->address = $request->address;
-        $student->phonenumber = $request->phonenumber;
-
+        $student->fill([
+            'name'          =>  $request->name,
+            'lastname'      =>  $request->lastname,
+            'birthday'      =>  $request->birthday,
+            'gender'        =>  $request->gender,
+            'email'         =>  $request->email,
+            'address'       =>  $request->address,
+            'phonenumber'   =>  $request->phonenumber,
+            'payment_type'  =>  $request->payment_type,
+        ]);
         $student->save();
 
         return redirect()->route('students.show',$student->id);

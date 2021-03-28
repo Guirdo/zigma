@@ -33,23 +33,27 @@ Route::group(['middleware'=>'auth'],function(){
     Route::resource('users', UserController::class);
     Route::resource('students', StudentController::class);
     Route::resource('tutors', TutorController::class);
-    Route::resource('employees', EmployeeController::class);
     Route::resource('courses', CourseController::class);
     Route::resource('groups', GroupController::class);
 
     //Payments
-    Route::get('/payments/index',[PaymentController::class,'index'])->name('payments.index');
-    Route::get('/payments/{student}/pay',[PaymentController::class,'pay'])->name('payments.pay');
-    Route::post('/payments',[PaymentController::class,'store'])->name('payments.store');
-    Route::get('/payments/{payment}',[PaymentController::class,'show'])->name('payments.show');
-    Route::post('/payments/printPDF',[PaymentController::class,'printPDF']);
+    Route::group(['prefix'=>'payments','as'=>'payments.'],function(){
+        Route::get('/index',[PaymentController::class,'index'])->name('index');
+        Route::get('/{student}/pay',[PaymentController::class,'pay'])->name('pay');
+        Route::post('/',[PaymentController::class,'store'])->name('store');
+        Route::get('/{folio}',[PaymentController::class,'show'])->name('show');
+        Route::post('/printPDF',[PaymentController::class,'printPDF']);
+    });
 
     //Tutors
     Route::post('/tutors/search',[TutorController::class,'search']);
 
     //Employees
-    Route::post('/employees/search',[EmployeeController::class,'search']);
-    Route::post('/employees/searchTeacher',[EmployeeController::class,'searchTeacher']);
+    Route::resource('employees', EmployeeController::class);
+    Route::group(['prefix'=>'employees'],function(){
+        Route::post('/search',[EmployeeController::class,'search']);
+        Route::post('/searchTeacher',[EmployeeController::class,'searchTeacher']);
+    });
 
     //Courses
     Route::post('/courses/search',[CourseController::class,'search']);

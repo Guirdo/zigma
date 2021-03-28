@@ -24,6 +24,7 @@ class Student extends Model
         'email',
         'address',
         'phonenumber',
+        'payment_type',
     ];
 
     /**

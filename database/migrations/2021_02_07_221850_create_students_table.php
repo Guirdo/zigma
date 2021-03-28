@@ -23,7 +23,7 @@ class CreateStudentsTable extends Migration
             $table->string('email',255);
             $table->text('address');
             $table->string('phonenumber',10);
-            $table->enum('payment_type',['weekly','monthly'])->default('weekly');
+            $table->enum('payment_type',['WEEKLY','MONTHLY'])->default('weekly');
             $table->text('url_photo')->nullable();
             $table->timestamps();
             $table->softDeletes();

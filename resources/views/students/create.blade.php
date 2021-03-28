@@ -65,7 +65,15 @@
             <input class="form-control-file" type="file" name="photo">
         </div>
 
-        <div class="col mr-3 mt-3">
+        <div class="col-6 mt-3 ml-0 mr-0">
+            <label for="">Payment type</label>
+            <select class="form-control" name="payment_type">
+                <option value="1">Weekly</option>
+                <option value="2">Monthly</option>
+            </select>
+        </div>
+
+        <div class="col mr-3 mt-4">
             <div class="row ml-0 mr-0 justify-content-between">
                 <label for="">Search tutor</label>
                 <div class="col-5">
